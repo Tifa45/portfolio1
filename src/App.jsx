@@ -95,7 +95,7 @@ function App() {
         options={{ smoothWheel: true, duration: 1.8 }}
       >
         <div
-          className={`pt-4 px-4 fixed top-0 left-0 w-full z-10 transition-all duration-300 ${
+          className={`pt-4 px-4 fixed top-0 left-0 w-full z-20 transition-all duration-300 ${
             !heroInView ? "translate-y-0" : "-translate-y-200"
           }`}
         >
