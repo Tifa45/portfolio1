@@ -12,7 +12,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
   },
-  { path: "sceene-details", element: <SceeneDetails /> },
+  { path: "/sceene-details", element: <SceeneDetails /> },
 ]);
 
 
