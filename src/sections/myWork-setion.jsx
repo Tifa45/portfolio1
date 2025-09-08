@@ -48,7 +48,7 @@ function MyWorkSection() {
               </p>
             </div>
             <div className="flex justify-center p-6">
-              <Link to="/sceene-details" target="blank" >
+              <Link to="/sceene-details"  >
                 <MyButton text="See more" />
               </Link>
             </div>
