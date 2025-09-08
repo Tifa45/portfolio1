@@ -1,0 +1,554 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import "tailwindcss";
+
+:root {
+  --primaryColor: #eaeef7;
+  --secondayColor: #101715;
+  --hoverColor: #beebde;
+  --cardColor: #d2d2d2;
+  --aboutColor: #8fcbf4;
+  --skillsBorderColor: #0f0c34;
+  --skillsBorderColor2: #873207;
+  --formInput: #95a4ba;
+}
+
+[data-theme="dark"] {
+  --primaryColor: #101715;
+  --secondaryColor: #eff1f7;
+  --hoverColor: #20322d;
+  --cardColor: #2a2a2a;
+  --aboutColor: #325369;
+  --skillsBorderColor: #3447c5;
+  --skillsBorderColor2: #ff9966;
+  --formInput: #4a5565;
+}
+
+@theme inline {
+  --color-primaryC: var(--primaryColor);
+  --color-secondaryC: var(--secondaryColor);
+  --color-hoverC: var(--hoverColor);
+  --color-cardC: var(--cardColor);
+  --color-about: var(--aboutColor);
+  --color-formInput: var(--formInput);
+}
+@theme {
+  --shadow-myShadow: rgba(0, 0, 0, 0.428) 0px 1px 0px,
+    rgba(0, 0, 0, 0.433) 0px 8px 24px, rgba(0, 0, 0, 0.347) 0px 16px 48px;
+  --shadow-myShadow2: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px,
+    rgba(0, 0, 0, 0.673) 0px 2px 10px 0px;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  
+}
+
+body {
+  background-color: var(--primaryColor);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  color: var(--secondaryColor);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+button {
+  cursor: pointer;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+@layer utilities {
+  .section-h-wrapper {
+    @apply w-full p-8 rounded-lg mx-auto  bg-formInput/20;
+    h2 {
+      @apply text-center text-2xl font-bold mb-6;
+    }
+    p {
+      @apply text-center text-lg font-normal leading-loose;
+    }
+  }
+  .formField {
+    @apply w-full flex flex-col gap-2;
+  }
+  .featureWapper {
+    @apply flex flex-col md:flex-row justify-center lg:justify-between items-center gap-12 mb-40 lg:mb-0 lg:min-h-[100vh];
+    .textWrapper {
+      @apply lg:flex-1 w-full flex flex-col;
+    }
+    .imgWrapper {
+      @apply w-full md:max-w-[50%];
+      .imgContainer {
+        @apply shadow-myShadow rounded-lg overflow-hidden w-fit;
+      }
+    }
+  }
+  .featureWapper2 {
+    @apply flex flex-col-reverse md:flex-row justify-center lg:justify-between items-center gap-12 mb-40  lg:mb-0 lg:min-h-[100vh];
+    .textWrapper {
+      @apply lg:flex-1 w-full flex flex-col;
+    }
+    .imgWrapper {
+      @apply w-full md:max-w-[50%];
+      .imgContainer {
+        @apply shadow-myShadow rounded-lg overflow-hidden w-fit;
+      }
+    }
+  }
+}
+
+/* From Uiverse.io by seoulchik */
+.premium-toggle {
+  --toggle-size: 2.5em;
+  --toggle-padding: 0em;
+  --handle-size: 1.3em;
+  --track-height: 1em;
+
+  --off-light: #e2e8f0;
+  --off-dark: #94a3b8;
+  --off-shadow: #64748b;
+
+  --on-primary: #050610;
+  --on-secondary: #2a4245;
+  --on-highlight: #2a4245;
+  --on-shadow: #333;
+
+  position: relative;
+  display: inline-block;
+  width: calc(var(--toggle-size) * 1);
+  height: var(--toggle-size);
+  user-select: none;
+}
+
+.premium-toggle input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch {
+  position: absolute;
+  inset: 0;
+  cursor: pointer;
+}
+
+.track {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: var(--track-height);
+  transform: translateY(-50%);
+  border-radius: var(--track-height);
+  background: linear-gradient(to bottom, var(--off-light), var(--off-dark));
+  box-shadow: 0 0.05em 0.1em rgba(0, 0, 0, 0.1) inset,
+    0 -0.05em 0.1em rgba(255, 255, 255, 0.1) inset,
+    0 0.1em 0.2em rgba(0, 0, 0, 0.2);
+  transition: all 0.4s cubic-bezier(0.3, 1.5, 0.7, 1);
+  overflow: hidden;
+}
+
+.track-shadow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.1),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.1)
+  );
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+}
+
+.premium-toggle input:checked ~ .switch .track {
+  background: linear-gradient(to right, var(--on-primary), var(--on-secondary));
+  box-shadow: 0 0.05em 0.1em rgba(0, 0, 0, 0.2) inset,
+    0 -0.05em 0.1em rgba(255, 255, 255, 0.1) inset,
+    0 0.1em 0.5em rgba(63, 94, 251, 0.5);
+}
+
+.premium-toggle input:checked ~ .switch .track-shadow {
+  opacity: 0.7;
+}
+
+.magnetic-field {
+  position: absolute;
+  inset: -50%;
+  border-radius: 50%;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0) 70%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+  opacity: 0;
+  transform: scale(0.5);
+  pointer-events: none;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.premium-toggle input:checked ~ .switch .magnetic-field {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.handle-container {
+  position: absolute;
+  top: 50%;
+  left: var(--toggle-padding);
+  width: var(--handle-size);
+  height: var(--handle-size);
+  transform: translateY(-50%);
+  transition: all 0.4s cubic-bezier(0.3, 1.5, 0.7, 1);
+}
+
+.premium-toggle input:checked ~ .switch .handle-container {
+  left: calc(100% - var(--handle-size) - var(--toggle-padding));
+}
+
+.handle {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--off-light), var(--off-dark));
+
+  transition: all 0.4s cubic-bezier(0.3, 1.5, 0.7, 1);
+  overflow: hidden;
+}
+
+.premium-toggle input:checked ~ .switch .handle {
+  background: linear-gradient(145deg, var(--on-highlight), var(--on-primary));
+  box-shadow: 0.15em 0.15em 0.3em var(--on-shadow),
+    -0.1em -0.1em 0.2em rgba(255, 255, 255, 0.2),
+    0 0 0.5em rgba(63, 94, 251, 0.5);
+}
+
+.handle-inner {
+  position: absolute;
+  inset: 0.1em;
+  border-radius: 50%;
+  background: linear-gradient(145deg, var(--off-light) 30%, var(--off-dark));
+  transition: all 0.4s cubic-bezier(0.3, 1.5, 0.7, 1);
+  overflow: hidden;
+}
+
+.premium-toggle input:checked ~ .switch .handle-inner {
+  background: linear-gradient(
+    145deg,
+    var(--on-highlight) 30%,
+    var(--on-primary)
+  );
+}
+
+.handle-shine {
+  position: absolute;
+  top: 0.1em;
+  left: 0.1em;
+  width: 40%;
+  height: 40%;
+  border-radius: 50%;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0)
+  );
+  opacity: 0.8;
+  transition: all 0.4s ease;
+}
+
+.premium-toggle input:checked ~ .switch .handle-shine {
+  opacity: 0.4;
+  transform: scale(0.7) translate(0.1em, 0.1em);
+}
+
+.handle-texture {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0) 8%
+    ),
+    radial-gradient(
+      circle at 70% 70%,
+      rgba(0, 0, 0, 0.1) 0%,
+      rgba(0, 0, 0, 0) 8%
+    );
+  background-size: 0.8em 0.8em;
+  opacity: 0.3;
+}
+
+.handle-ripple {
+  position: absolute;
+  inset: -20%;
+  border-radius: 50%;
+  border: 0.2em solid rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+}
+
+.premium-toggle input:checked ~ .switch .handle-ripple {
+  animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+  0% {
+    opacity: 0.7;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+
+.sun-moon {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.3, 1.5, 0.7, 1);
+}
+
+.ray {
+  position: absolute;
+  background-color: #f59e0b;
+  width: 0.2em;
+  height: 0.8em;
+  left: 50%;
+  top: 50%;
+  opacity: 1;
+  transform-origin: bottom center;
+  transition: all 0.4s ease 0.1s;
+}
+
+.ray1 {
+  transform: translate(-50%, -120%) rotate(0deg);
+}
+.ray2 {
+  transform: translate(-50%, -120%) rotate(45deg);
+}
+.ray3 {
+  transform: translate(-50%, -120%) rotate(90deg);
+}
+.ray4 {
+  transform: translate(-50%, -120%) rotate(135deg);
+}
+
+.premium-toggle input:checked ~ .switch .ray {
+  opacity: 0;
+  transform: translate(-50%, -120%) rotate(180deg);
+}
+
+.crater {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.crater1 {
+  width: 0.3em;
+  height: 0.3em;
+  top: 30%;
+  left: 30%;
+}
+
+.crater2 {
+  width: 0.2em;
+  height: 0.2em;
+  top: 60%;
+  left: 60%;
+}
+
+.crater3 {
+  width: 0.25em;
+  height: 0.25em;
+  top: 40%;
+  left: 70%;
+}
+
+.premium-toggle input:checked ~ .switch .crater {
+  opacity: 1;
+  transition: opacity 0.4s ease 0.2s;
+}
+
+.wave-group {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transform: scale(0);
+  overflow: hidden;
+  transition: transform 0.4s ease;
+}
+
+.premium-toggle input:checked ~ .switch .wave-group {
+  transform: scale(1);
+}
+
+.wave {
+  position: absolute;
+  left: -50%;
+  right: -50%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    rgba(252, 70, 107, 0) 0%,
+    rgba(252, 70, 107, 0.3) 50%,
+    rgba(63, 94, 251, 0.3) 50%,
+    rgba(63, 94, 251, 0) 100%
+  );
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+.premium-toggle input:checked ~ .switch .wave {
+  animation: wave 1.5s linear infinite;
+  opacity: 0.3;
+}
+
+.wave2 {
+  animation-delay: 0.5s !important;
+}
+
+.wave3 {
+  animation-delay: 1s !important;
+}
+
+@keyframes wave {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+.premium-toggle:active .handle {
+  transform: scale(0.9);
+}
+
+.skillCard {
+  position: relative;
+}
+
+.skillCard::before {
+  position: absolute;
+  content: " ";
+  display: block;
+  width: 100%;
+  height: 180%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--skillsBorderColor),
+    var(--skillsBorderColor),
+    var(--skillsBorderColor2),
+    var(--skillsBorderColor2),
+    var(--skillsBorderColor),
+    transparent
+  );
+  animation: rotation_481 10000ms infinite linear;
+  z-index: -1;
+}
+@keyframes rotation_481 {
+  0% {
+    transform: rotateZ(0deg);
+  }
+
+  0% {
+    transform: rotateZ(360deg);
+  }
+}
+
+/* From Uiverse.io by Madflows */
+.my-button {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  padding: 0 2rem;
+  border-radius: 1.5rem;
+  background: #3d3a4e;
+  background-size: 400%;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+.my-button:hover::before {
+  transform: scaleX(1);
+}
+
+.my-button-content {
+  position: relative;
+  z-index: 1;
+}
+
+.my-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  width: 100%;
+  height: inherit;
+  border-radius: inherit;
+  background: linear-gradient(
+    82.3deg,
+    rgba(150, 93, 233, 1) 10.8%,
+    rgba(99, 88, 238, 1) 94.3%
+  );
+  transition: all 0.475s;
+}
+
+.hover-underline-animation {
+  display: inline-block;
+  position: relative;
+}
+.hover-underline-animation::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: #0087ca;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
